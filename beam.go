@@ -282,7 +282,12 @@ func (t Time) Equal(u Time) bool {
 // Compare 比较 t 和 u。
 // 如果 t 小于 u 则返回 -1；大于返回 1；等于返回 0。
 func (t Time) Compare(u Time) int {
-	return t.time.Compare(u.time)
+	if t.Before(u) {
+		return -1
+	} else if t.After(u) {
+		return 1
+	}
+	return 0
 }
 
 // IsZero 返回 t 是否零时刻
